@@ -42,3 +42,24 @@ for row in reader:
             hums[year].append(hum)
 
 ###
+
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+speeds = {}   # IN MILES PER HOUR
+
+for i in range(2015,2025):
+    speeds[i] = []
+
+for row in reader:
+    year = int(row[0])
+    speed = int(row[4])
+    for key in speeds.keys():
+        if key == year:
+            speeds[year].append(speed)
+
+###
+
