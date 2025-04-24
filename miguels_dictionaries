@@ -1,4 +1,5 @@
 import csv
+from math import degrees
 from pathlib import Path
 
 ###
@@ -63,3 +64,64 @@ for row in reader:
 
 ###
 
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+directions = {}   # IN DEGREES
+
+for i in range(2015,2025):
+    directions[i] = []
+
+for row in reader:
+    year = int(row[0])
+    degree = float(row[5])
+    for key in directions.keys():
+        if key == year:
+            directions[year].append(degree)
+
+###
+
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+rain_inches = {}   # IN INCHES
+
+for i in range(2015,2025):
+    rain_inches[i] = []
+
+for row in reader:
+    year = int(row[0])
+    percent = float(row[6])
+    for key in rain_inches.keys():
+        if key == year:
+            rain_inches[year].append(percent)
+
+###
+
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+water_temps = {}   # IN DEGREES FAHRENHEIT
+
+for i in range(2015,2025):
+    water_temps[i] = []
+
+for row in reader:
+    year = int(row[0])
+    temp = float(row[7])
+    for key in water_temps.keys():
+        if key == year:
+            water_temps[year].append(temp)
+
+###
+
+# Just realized I probably could have looped everything to be made WAY faster
