@@ -1,0 +1,44 @@
+import csv
+from pathlib import Path
+
+###
+
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+temps = {}  # IN DEGREES FAHRENHEIT
+
+for i in range(2015,2025):
+    temps[i] = []
+
+for row in reader:
+    year = int(row[0])
+    temp = int(row[2])
+    for key in temps.keys():
+        if key == year:
+            temps[year].append(temp)
+
+###
+
+path = Path('weather_data.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+hums = {}   # IN PERCENTAGES
+
+for i in range(2015,2025):
+    hums[i] = []
+
+for row in reader:
+    year = int(row[0])
+    hum = int(row[3])
+    for key in hums.keys():
+        if key == year:
+            hums[year].append(hum)
+
+###
